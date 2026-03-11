@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Courier+Prime:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #70FF00;
+  --color-dark-panel: #161616;
+  --color-card-bg: #4F4F4F;
+  --color-card-border: #6A6969;
+  --color-card-overlay: rgba(76, 76, 76, 0.66);
+  --color-gray-1: #333333;
+  --color-gray-2: #4F4F4F;
+  --color-gray-3: #828282;
+  --color-gray-4: #BDBDBD;
+  --color-gray-5: #E0E0E0;
+  --color-gray-6: #F2F2F2;
+
+  --font-family-roboto: 'Roboto', sans-serif;
+  --font-family-courier: 'Courier Prime', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #000000 0%, #272727 44%, #494949 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app {
+  min-height: 100vh;
+}
