@@ -1,14 +1,34 @@
 <script setup>
 import { ref } from 'vue'
+import gsap from 'gsap'
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import githubIcon from '../assets/images/github-icon.svg'
 import linkedinIcon from '../assets/images/linkedin-icon.svg'
 import emailIcon from '../assets/images/email-icon.svg'
 
+gsap.registerPlugin(ScrollToPlugin)
+
+defineProps({
+  visible: { type: Boolean, default: true },
+})
+
 const mobileOpen = ref(false)
+
+function scrollTo(e) {
+  e.preventDefault()
+  const target = e.currentTarget.getAttribute('href')
+  if (target && target.startsWith('#')) {
+    gsap.to(window, { scrollTo: target, duration: 1, ease: 'power2.inOut' })
+    mobileOpen.value = false
+  }
+}
 </script>
 
 <template>
-  <nav class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md">
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md transition-all duration-700"
+    :class="visible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'"
+  >
     <div class="max-w-[1540px] mx-auto flex items-center justify-between px-8 py-5">
       <!-- Logo -->
       <a href="#" class="font-family-roboto text-[30px] md:text-[40px] font-bold text-accent uppercase leading-none">
@@ -17,9 +37,9 @@ const mobileOpen = ref(false)
 
       <!-- Desktop nav -->
       <div class="hidden lg:flex items-center gap-10">
-        <a href="#about" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">About</a>
-        <a href="#skills" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">Skills</a>
-        <a href="#projects" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">Projects</a>
+        <a href="#about" @click="scrollTo" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">About</a>
+        <a href="#skills" @click="scrollTo" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">Skills</a>
+        <a href="#projects" @click="scrollTo" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">Projects</a>
 
         <a href="#" class="flex items-center gap-2 font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">
           <img :src="linkedinIcon" alt="LinkedIn" class="w-[30px] h-[30px]" />
@@ -53,9 +73,9 @@ const mobileOpen = ref(false)
 
     <!-- Mobile menu -->
     <div v-if="mobileOpen" class="lg:hidden bg-black/90 border-t border-white/10 px-8 pb-6 flex flex-col gap-4">
-      <a href="#about" class="font-roboto text-xl font-bold text-white py-2" @click="mobileOpen = false">About</a>
-      <a href="#skills" class="font-roboto text-xl font-bold text-white py-2" @click="mobileOpen = false">Skills</a>
-      <a href="#projects" class="font-roboto text-xl font-bold text-white py-2" @click="mobileOpen = false">Projects</a>
+      <a href="#about" class="font-roboto text-xl font-bold text-white py-2" @click="scrollTo">About</a>
+      <a href="#skills" class="font-roboto text-xl font-bold text-white py-2" @click="scrollTo">Skills</a>
+      <a href="#projects" class="font-roboto text-xl font-bold text-white py-2" @click="scrollTo">Projects</a>
       <a href="#" class="flex items-center gap-2 font-roboto text-xl font-bold text-white py-2">
         <img :src="linkedinIcon" alt="LinkedIn" class="w-6 h-6" /> Linkedin
       </a>

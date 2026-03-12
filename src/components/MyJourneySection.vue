@@ -1,4 +1,16 @@
 <script setup>
+import { ref } from 'vue'
+
+const activeVideo = ref(null)
+
+function openVideo(url) {
+  activeVideo.value = url
+}
+
+function closeVideo() {
+  activeVideo.value = null
+}
+
 const companies = [
   {
     title: 'lorem ipsum',
@@ -9,6 +21,7 @@ const companies = [
     title: 'lorem ipsum',
     description: 'Eum earum possimus qui sunt possimus aut tempora aliquid ut veritatis architecto et voluptate enim id sint possimus. Aut nobis est fuga officia et nemo nulla et quod quia ex dolor placeat rem repudiandae voluptas.',
     side: 'left',
+    video: 'https://www.youtube.com/embed/your-video-id',
   },
   {
     title: 'lorem ipsum',
@@ -31,7 +44,7 @@ const companies = [
 <template>
   <section class="bg-dark-panel py-20 px-8">
     <div class="max-w-[1540px] mx-auto">
-      <h2 class="font-roboto text-3xl md:text-[49px] font-bold text-gray-5 mb-16">companies( )</h2>
+      <h2 class="font-roboto text-3xl md:text-[49px] font-bold text-gray-5 mb-16">myJourney( )</h2>
 
       <!-- Timeline -->
       <div class="relative">
@@ -58,7 +71,18 @@ const companies = [
               <p class="font-roboto text-base md:text-[20px] font-light text-white leading-[1.5] mb-6">
                 {{ company.description }}
               </p>
+              <!-- Video button -->
+              <button
+                v-if="company.video"
+                @click="openVideo(company.video)"
+                class="inline-block px-8 py-4 rounded-[12px] font-roboto text-lg md:text-[23px] font-bold text-white hover:text-accent transition-colors cursor-pointer"
+                style="border: 4px solid transparent; border-image: linear-gradient(180deg, #70FF00 0%, #FFFFFF 100%) 1;"
+              >
+                My experience
+              </button>
+              <!-- Website link -->
               <a
+                v-else
                 href="#"
                 class="inline-block px-8 py-4 rounded-[12px] font-roboto text-lg md:text-[23px] font-bold text-white hover:text-accent transition-colors"
                 style="border: 4px solid transparent; border-image: linear-gradient(180deg, #70FF00 0%, #FFFFFF 100%) 1;"
@@ -71,4 +95,29 @@ const companies = [
       </div>
     </div>
   </section>
+
+  <!-- Video Modal -->
+  <Teleport to="body">
+    <div
+      v-if="activeVideo"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+      @click.self="closeVideo"
+    >
+      <div class="relative w-[90vw] max-w-4xl aspect-video">
+        <button
+          @click="closeVideo"
+          class="absolute -top-10 right-0 font-roboto text-lg font-bold text-white hover:text-accent transition-colors cursor-pointer"
+        >
+          Close
+        </button>
+        <iframe
+          :src="activeVideo"
+          class="w-full h-full rounded-lg"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </Teleport>
 </template>

@@ -1,33 +1,33 @@
 <script setup>
+import vueIcon from '../assets/images/skill-vue.svg'
 import jsIcon from '../assets/images/skill-javascript.svg'
-import tsIcon from '../assets/images/skill-typescript.svg'
-import htmlIcon from '../assets/images/skill-html5.svg'
+import tailwindIcon from '../assets/images/skill-tailwind.svg'
 import cssIcon from '../assets/images/skill-css3.svg'
-import reactIcon from '../assets/images/skill-react.svg'
-import reduxIcon from '../assets/images/skill-redux.svg'
-import nodeIcon from '../assets/images/skill-nodejs.svg'
-import nextIcon from '../assets/images/skill-nextjs.svg'
-import linuxIcon from '../assets/images/skill-linux.svg'
-import pythonIcon from '../assets/images/skill-python.svg'
-import rubyIcon from '../assets/images/skill-ruby.svg'
-import railsIcon from '../assets/images/skill-rails.svg'
+import phpIcon from '../assets/images/skill-php.svg'
+import laravelIcon from '../assets/images/skill-laravel.svg'
+import mysqlIcon from '../assets/images/skill-mysql.svg'
+import dockerIcon from '../assets/images/skill-docker.svg'
+import awsIcon from '../assets/images/skill-aws.svg'
+import htmlIcon from '../assets/images/skill-html5.svg'
+import claudeIcon from '../assets/images/skill-claude.svg'
 
+// Frontend
 const row1 = [
+  { name: 'HTML', icon: htmlIcon },
+  { name: 'CSS', icon: cssIcon },
   { name: 'JavaScript', icon: jsIcon },
-  { name: 'TypeScript', icon: tsIcon },
-  { name: 'HTML5', icon: htmlIcon },
-  { name: 'CSS3', icon: cssIcon },
-  { name: 'React', icon: reactIcon },
-  { name: 'Redux', icon: reduxIcon },
-  { name: 'Node.js', icon: nodeIcon },
-  { name: 'Next.js', icon: nextIcon },
+  { name: 'Vue', icon: vueIcon },
+  { name: 'Tailwind', icon: tailwindIcon },
 ]
 
+// Backend & Infrastructure
 const row2 = [
-  { name: 'Linux', icon: linuxIcon },
-  { name: 'Python', icon: pythonIcon },
-  { name: 'Ruby', icon: rubyIcon },
-  { name: 'Rails', icon: railsIcon },
+  { name: 'PHP', icon: phpIcon },
+  { name: 'Laravel', icon: laravelIcon },
+  { name: 'MySQL', icon: mysqlIcon },
+  { name: 'Docker', icon: dockerIcon },
+  { name: 'AWS', icon: awsIcon },
+  { name: 'Claude', icon: claudeIcon },
 ]
 </script>
 
