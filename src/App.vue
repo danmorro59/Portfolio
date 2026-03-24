@@ -7,6 +7,7 @@ import AboutSection from './components/AboutSection.vue'
 import SkillsSection from './components/SkillsSection.vue'
 import ProjectsSection from './components/ProjectsSection.vue'
 import MyJourneySection from './components/MyJourneySection.vue'
+import FooterSection from './components/FooterSection.vue'
 
 const gooeyTrigger = ref(null)
 const heroRef = ref(null)
@@ -36,4 +37,5 @@ function onGooeyProgress(progress) {
   <SkillsSection />
   <ProjectsSection />
   <MyJourneySection />
+  <FooterSection />
 </template>

@@ -41,22 +41,16 @@ function scrollTo(e) {
         <a href="#skills" @click="scrollTo" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">Skills</a>
         <a href="#projects" @click="scrollTo" class="font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">Projects</a>
 
-        <a href="#" class="flex items-center gap-2 font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">
-          <img :src="linkedinIcon" alt="LinkedIn" class="w-[30px] h-[30px]" />
-          Linkedin
-        </a>
-        <a href="#" class="flex items-center gap-2 font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">
+
+        <a href="https://github.com/danmorro59" target="_blank" class="flex items-center gap-2 font-family-roboto text-[22px] font-bold text-white hover:text-accent transition-colors">
           <img :src="githubIcon" alt="GitHub" class="w-[30px] h-[30px]" />
           Github
         </a>
 
         <!-- Contact button -->
         <a
-          href="#"
-          class="flex items-center gap-3 px-6 py-3 rounded-[13px] border-[3px] border-transparent bg-clip-padding
-                 [border-image:linear-gradient(180deg,rgba(112,255,0,0.55),#fff)_1]
-                 hover:border-[#70FF00] group transition-all"
-          style="border-image: linear-gradient(180deg, rgba(112,255,0,0.55) 0%, #ffffff 100%) 1;"
+          href="mailto:dmorro800@gmail.com"
+          class="btn-gradient flex items-center gap-2 px-4 py-2 rounded-[8px] group transition-all"
         >
           <img :src="emailIcon" alt="Email" class="w-[30px] h-[30px]" />
           <span class="font-roboto text-[21px] font-bold text-white group-hover:text-[#70FF00] transition-colors">Contact me</span>

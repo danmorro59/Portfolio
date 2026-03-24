@@ -1,10 +1,25 @@
 <script setup>
 import { ref, computed, nextTick } from "vue";
 import gsap from "gsap";
-import projectThumb from "../assets/images/project-thumb.png";
+import projectHeartImg from "../assets/images/projheart-img.png";
 import robinImg from "../assets/images/Xnip2026-03-11_23-47-07.jpg";
-
+import ngImg from "../assets/images/ngImg2.jpg";
+import CmsImage from "../assets/images/cmsImg.png";
 const allProjects = [
+  {
+    name: "National Guard",
+    image: ngImg,
+    description:
+      "Lead developer for the Army National Guard's official website. Built with Vue 3, Tailwind CSS, and Laravel, the site serves as a key recruitment and information platform, attracting millions of visitors annually. I was responsible for implementing new features, optimizing performance, and ensuring a seamless user experience across devices. (Also spearheaded the vue2 to vue3 upgrade, which was a beast LOL).",
+    link: "https://nationalguard.com",
+  },
+  {
+    name: "National Guard CMS",
+    image: CmsImage,
+    description:
+      "Using Laravel, Vue, and Strapi, I built a custom content management system for the Army National Guard's website. This CMS allows non-technical staff to easily create and manage content, including news articles, events, and recruitment materials. It features a user-friendly interface, role-based permissions, and seamless integration with the front-end, enabling the National Guard team to keep their site up-to-date with fresh content that engages visitors and supports their recruitment efforts.",
+    link: "https://example.com",
+  },
   {
     name: "RobinUNDERtheHOOD",
     image: robinImg,
@@ -13,53 +28,11 @@ const allProjects = [
     link: "https://github.com/danmorro59/RobinUNDERtheHOOD",
   },
   {
-    name: "Project 2",
-    image: projectThumb,
+    name: "Project Heart",
+    image: projectHeartImg,
     description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
-  },
-  {
-    name: "Project 3",
-    image: projectThumb,
-    description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
-  },
-  {
-    name: "Project 4",
-    image: projectThumb,
-    description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
-  },
-  {
-    name: "Project 5",
-    image: projectThumb,
-    description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
-  },
-  {
-    name: "Project 6",
-    image: projectThumb,
-    description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
-  },
-  {
-    name: "Project 7",
-    image: projectThumb,
-    description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
-  },
-  {
-    name: "Project 8",
-    image: projectThumb,
-    description:
-      "A brief description of this project. What it does, the tech used, and the problem it solves.",
-    link: "https://example.com",
+      "This was a small commercial website I built for a nonprofit finding a cure for CHD. This was a really cool experience. I used wordpress/elementor to provide easy access for the client, but also built a custom plugin to automate email campaigns. This application also has a custom stripe integration (that was pretty complex to do in wordpress) to allow users to donate to the cause.",
+    link: "https://projectheart.org/",
   },
 ];
 
@@ -152,26 +125,27 @@ async function shuffle() {
   const cards = getCards();
   const contents = getContents();
 
-  // Phase 1: scatter cards out with random rotations and directions
+  // Phase 1: cards tumble out in 3D
   const tl = gsap.timeline();
 
   cards.forEach((card, i) => {
-    // Reset content opacity immediately
     gsap.set(contents[i], { opacity: 0 });
 
     const direction = i % 2 === 0 ? -1 : 1;
     tl.to(
       card,
       {
-        x: direction * (200 + Math.random() * 300),
-        y: (Math.random() - 0.5) * 150,
-        rotation: direction * (10 + Math.random() * 20),
-        scale: 0.8,
+        rotateY: direction * (90 + Math.random() * 90),
+        rotateX: (Math.random() - 0.5) * 40,
+        x: direction * (150 + Math.random() * 200),
+        y: (Math.random() - 0.5) * 80,
+        z: -(200 + Math.random() * 300),
+        scale: 0.6,
         opacity: 0,
-        duration: 0.4,
-        ease: "power2.in",
+        duration: 0.5,
+        ease: "power3.in",
       },
-      0,
+      i * 0.06,
     );
   });
 
@@ -181,7 +155,7 @@ async function shuffle() {
   pageIndex.value = (pageIndex.value + 1) % totalPages.value;
   await nextTick();
 
-  // Phase 3: new cards fly in from scattered positions
+  // Phase 3: new cards flip in from 3D space
   const newCards = getCards();
   const newContents = getContents();
   const tl2 = gsap.timeline();
@@ -191,10 +165,12 @@ async function shuffle() {
 
     const direction = i % 2 === 0 ? 1 : -1;
     gsap.set(card, {
-      x: direction * (200 + Math.random() * 300),
-      y: (Math.random() - 0.5) * 150,
-      rotation: direction * (10 + Math.random() * 20),
-      scale: 0.8,
+      rotateY: direction * -(90 + Math.random() * 90),
+      rotateX: (Math.random() - 0.5) * 40,
+      x: direction * (150 + Math.random() * 200),
+      y: (Math.random() - 0.5) * 80,
+      z: -(200 + Math.random() * 300),
+      scale: 0.6,
       opacity: 0,
       width: cardWidth,
     });
@@ -202,16 +178,18 @@ async function shuffle() {
     tl2.to(
       card,
       {
+        rotateY: 0,
+        rotateX: 0,
         x: 0,
         y: 0,
-        rotation: 0,
+        z: 0,
         scale: 1,
         opacity: 1,
         width: cardWidth,
-        duration: 0.5,
-        ease: "back.out(1.2)",
+        duration: 0.6,
+        ease: "back.out(1.4)",
       },
-      0.05 * i,
+      i * 0.08,
     );
   });
 
@@ -231,11 +209,7 @@ async function shuffle() {
           v-if="totalPages > 1"
           @click="shuffle"
           :disabled="isShuffling"
-          class="flex items-center gap-2 px-6 py-3 rounded-[12px] font-roboto text-lg font-bold text-white hover:text-accent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
-          style="
-            border: 3px solid transparent;
-            border-image: linear-gradient(180deg, #70ff00 0%, #ffffff 100%) 1;
-          "
+          class="btn-gradient flex items-center gap-2 px-4 py-2 rounded-[8px] font-roboto text-base font-bold text-white hover:text-accent transition-colors cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -265,7 +239,7 @@ async function shuffle() {
       <div
         ref="containerRef"
         class="flex overflow-hidden"
-        :style="{ gap: gap + 'px' }"
+        :style="{ gap: gap + 'px', perspective: '1200px' }"
         @mouseleave="collapseAll"
       >
         <div
@@ -280,7 +254,7 @@ async function shuffle() {
             <img
               :src="project.image"
               :alt="project.name"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-contain bg-black"
             />
             <!-- Title bar -->
             <div
@@ -313,12 +287,7 @@ async function shuffle() {
               :href="project.link"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-block px-6 py-3 rounded-[12px] font-roboto text-lg font-bold text-white hover:text-accent transition-colors self-start"
-              style="
-                border: 3px solid transparent;
-                border-image: linear-gradient(180deg, #70ff00 0%, #ffffff 100%)
-                  1;
-              "
+              class="btn-gradient inline-block px-4 py-2 rounded-[8px] font-roboto text-base font-bold text-white hover:text-accent transition-colors self-start"
             >
               View project
             </a>

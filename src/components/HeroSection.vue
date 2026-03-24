@@ -135,8 +135,10 @@ watch(() => props.animate, async (ready) => {
       </div>
 
       <!-- Right avatar -->
-      <div class="flex-shrink-0">
-        <img :src="heroAvatar" alt="Developer avatar" class="w-[350px] md:w-[500px] lg:w-[569px] h-[1000px] object-cover object-top" />
+      <div class="hero-avatar-wrap flex-shrink-0 relative">
+        <img :src="heroAvatar" alt="Developer avatar" class="w-[350px] md:w-[500px] lg:w-[569px] max-h-[600px] object-contain relative z-10" />
+        <div class="hero-platform"></div>
+        <div class="hero-platform-glow"></div>
       </div>
     </div>
   </section>
@@ -153,5 +155,49 @@ watch(() => props.animate, async (ready) => {
 
 .revealed {
   color: inherit;
+}
+
+.hero-avatar-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Elliptical platform under the feet */
+.hero-platform {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(112, 255, 0, 0.25) 0%,
+    rgba(112, 255, 0, 0.1) 40%,
+    transparent 70%
+  );
+  z-index: 5;
+}
+
+/* Soft glow ring around the platform */
+.hero-platform-glow {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(112, 255, 0, 0.12) 0%,
+    rgba(112, 255, 0, 0.04) 50%,
+    transparent 75%
+  );
+  filter: blur(8px);
+  z-index: 4;
 }
 </style>

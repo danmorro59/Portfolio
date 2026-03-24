@@ -38,3 +38,42 @@ a {
 #app {
   min-height: 100vh;
 }
+
+/* Gradient border button with hover fill */
+.btn-gradient {
+  position: relative;
+  border: none !important;
+  border-image: none !important;
+  z-index: 0;
+}
+
+.btn-gradient::before,
+.btn-gradient::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  padding: 3px;
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.btn-gradient::before {
+  background: linear-gradient(180deg, #70ff00 0%, #ffffff 100%);
+  z-index: -2;
+}
+
+.btn-gradient::after {
+  background: #70ff00;
+  z-index: -1;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.8s ease;
+}
+
+.btn-gradient:hover::after {
+  clip-path: inset(0 0 0 0);
+}
