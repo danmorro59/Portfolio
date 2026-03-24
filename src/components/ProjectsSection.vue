@@ -231,7 +231,7 @@ async function shuffle() {
       <p class="font-roboto text-base md:text-lg text-gray-3 max-w-2xl mb-16">
         Most of my larger applications have been built for the
         <span class="text-accent">Department of Defense</span> and can't be
-        shared publicly. Here are some smaller commercial and personal projects
+        shared publicly. Here are some projects
         I've built on over the years.
       </p>
 
