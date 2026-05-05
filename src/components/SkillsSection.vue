@@ -10,6 +10,7 @@ import dockerIcon from '../assets/images/skill-docker.svg'
 import awsIcon from '../assets/images/skill-aws.svg'
 import htmlIcon from '../assets/images/skill-html5.svg'
 import claudeIcon from '../assets/images/skill-claude.svg'
+import wordpressIcon from '../assets/images/skill-wordpress.svg'
 
 // Frontend
 const row1 = [
@@ -27,6 +28,7 @@ const row2 = [
   { name: 'MySQL', icon: mysqlIcon },
   { name: 'Docker', icon: dockerIcon },
   { name: 'AWS', icon: awsIcon },
+  { name: 'WordPress', icon: wordpressIcon },
   { name: 'Claude', icon: claudeIcon },
 ]
 </script>

@@ -1,10 +1,12 @@
 <script setup>
 import { ref, computed, nextTick } from "vue";
 import gsap from "gsap";
-import projectHeartImg from "../assets/images/projheart-img.png";
+import projectHeartImg from "../assets/images/ProjectHeart.jpg";
 import robinImg from "../assets/images/Xnip2026-03-11_23-47-07.jpg";
 import ngImg from "../assets/images/ngImg2.jpg";
 import CmsImage from "../assets/images/cmsImg.png";
+import americanHealthPlansImg from "../assets/images/Amhealth.jpg";
+import highlandHeightsImg from "../assets/images/highlandHeights.jpg";
 const allProjects = [
   {
     name: "National Guard",
@@ -34,9 +36,23 @@ const allProjects = [
       "This was a small commercial website I built for a nonprofit finding a cure for CHD. This was a really cool experience. I used wordpress/elementor to provide easy access for the client, but also built a custom plugin to automate email campaigns. This application also has a custom stripe integration (that was pretty complex to do in wordpress) to allow users to donate to the cause.",
     link: "https://projectheart.org/",
   },
+  {
+    name: "American Health Plans",
+    image: americanHealthPlansImg,
+    description:
+      "This was a small commercial website I built for an insurance company. I used wordpress/elementor to provide easy access for the client, but also built a custom plugin to automate email campaigns. This application also has a custom stripe integration (that was pretty complex to do in wordpress) to allow users to pay for their plans online.",
+    link: "https://americanhealthplans.com/",
+  },
+  {
+    name: "Highland Heights",
+    image: highlandHeightsImg,
+    description:
+      "This was a commercial website I built for a townhome community in Kentucky. I used wordpress/elementor to provide easy access for the client, but also built a custom plugin to automate email campaigns. This application also has a custom stripe integration (that was pretty complex to do in wordpress) to allow users to pay their HOA fees online.",
+    link: "https://hhky.com/",
+  },
 ];
 
-const perPage = 4;
+const perPage = 3;
 const pageIndex = ref(0);
 const isShuffling = ref(false);
 
@@ -231,8 +247,7 @@ async function shuffle() {
       <p class="font-roboto text-base md:text-lg text-gray-3 max-w-2xl mb-16">
         Most of my larger applications have been built for the
         <span class="text-accent">Department of Defense</span> and can't be
-        shared publicly. Here are some projects
-        I've built on over the years.
+        shared publicly. Here are some projects I've built on over the years.
       </p>
 
       <!-- Projects row -->
